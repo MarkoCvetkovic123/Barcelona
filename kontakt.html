@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" sizes="57x57" href="slike/barca.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FC Barcelona Balkan Fans</title>
+</head>
+<body>
+  <!-- NAV MENI -->
+  <nav class="navbar navbar-expand-lg navbar-light bojaNav">
+    <img class="icon" src="slike/icon.png"><a class="navbar-brand font-weight-bold ml-2 pb-2 whiteColor" href="index.html">FC Barcelona Balkan Fans</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse d-flex justify-content-end mr-5" id="navbarNavDropdown" >
+        <ul class="nav">
+            <li class="nav-item">
+              <a class="nav-link active" href="index.html">Pocetna strana</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="o-klubu.html">O klubu</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="novosti.html">Novosti</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="slike.html">Slike</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="karte.html">Karte</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="kontakt.html">Kontakt</a>
+            </li>
+          </ul>
+      </div>
+    </nav>
+  
+    <!-- SADRZAJ -->
+    <h1 class="text-center slikah1 pt-3">Kontaktirajte nas</h1>
+    <div class="container pb-4 d-flex justify-content-center">
+      <div>
+        <i class="fas fa-map-marker-alt"> C. d'Arístides Maillol, 12, 08028 Barcelona, Španija </i><br />
+        <i class="fas fa-phone"><a class="email" href="tel:123-456-7890"> 902 18 99 00</a></i><br />
+        <i class="fas fa-envelope"> <a class="email" href="mailto:cvetkovicmarko2@gmail.com">events@fcbarcelona.cat</a></i>
+      </div>
+    </div>
+    <!-- Kontak forma -->
+    <div class="container mt-1">
+      <form onsubmit="return !!(validateForm() & testVariable());" name="Form" id="myForm">
+          <label for="fname">Ime</label>
+          <input type="text" name="answer_a" id="a" placeholder="Ime" required>
+      
+          <label for="lname">Prezime</label>
+          <input type="text" name="answer_b" id="b" placeholder="Prezime" required>
+
+          <label for="email">Email</label>
+          <input type="text" name="answer_d" id="d" placeholder="Email" required>
+      
+          <label for="country">Zemlja</label>
+          <select id="country" name="country" required>
+            <option value="srbija">Srbija</option>
+            <option value="crnaGora">Crna Gora</option>
+            <option value="hrvatska">Hrvatska</option>
+            <option value="bih">BiH</option>
+            <option value="ostalo">Ostalo</option>
+          </select>
+      
+          <label for="subject">Poruka</label>
+          <textarea cols="30" rows="2" name="answer_c" id="c" placeholder="Napisite poruku" class="kontakt1 resize" required></textarea>
+      
+          <input type="submit" value="Posalji">
+          
+      </form>
+      <h3 id="spanResult"></h3>
+    </div>
+
+    <div class="container pt-3 pb-5">
+      <iframe class="mb-5 w-100" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2993.6864762013015!2d2.12063111528946!3d41.38089597926486!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x12a498f576297baf%3A0x44f65330fe1b04b9!2z0JrQsNC80L8g0L3QvtGD!5e0!3m2!1ssr!2srs!4v1639311775772!5m2!1ssr!2srs" width="350" height="250" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+    </div>
+      <pre></pre>
+
+      <footer class="footer">
+        <div>
+            Autor: Cvetkovic Marko, SII Nis, 2021240420
+        </div>
+        <div class="pb-3">
+          &copy; Sva prava zadrzava FC Barcelona Balkan Fans
+        </div>
+    </footer>
+    <!-- Uzima vrednosti,reseruje formu -->
+    <script type="text/javascript">
+      function validateForm() {
+        var a = document.forms["Form"]["answer_a"].value;
+        var b = document.forms["Form"]["answer_b"].value;
+        var c = document.forms["Form"]["answer_c"].value;
+        var d = document.forms["Form"]["answer_d"].value;
+        
+        document.getElementById("myForm").reset();
+      }
+    </script>
+    <!-- Ispisuje poruku -->>
+    <script>
+        function testVariable() {
+             document.getElementById("spanResult").innerHTML = "Uspesno ste poslali poruku!";
+        }
+    </script>
+
+</body>
+</html>

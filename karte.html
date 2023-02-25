@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" oncontextmenu="return false">
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" sizes="57x57" href="slike/barca.png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChigm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/style.css">
+    <title>FC Barcelona Balkan Fans</title>
+</head>
+<body>
+  <!-- NAV MENI -->
+    <nav class="navbar navbar-expand-lg navbar-light bojaNav">
+        <img class="icon" src="slike/icon.png"><a class="navbar-brand font-weight-bold ml-2 pb-2 whiteColor" href="index.html">FC Barcelona Balkan Fans</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse d-flex justify-content-end mr-5" id="navbarNavDropdown" >
+            <ul class="nav">
+                <li class="nav-item">
+                  <a class="nav-link active" href="index.html">Pocetna strana</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="o-klubu.html">O klubu</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="novosti.html">Novosti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="slike.html">Slike</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="karte.html">Karte</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="kontakt.html">Kontakt</a>
+                </li>
+              </ul>
+          </div>
+        </nav>
+
+        <!-- SADRZAJ -->
+    <h1 class="text-center slikah1 pt-3">Kupovina karata</h1>
+
+    <div class="container mt-1 pb-5 text-center">
+      <form name="Form" id="myForm" class="">
+          <label for="odrasli">Karte odrasli</label><br />
+          <input type="number" id="myTextO" placeholder="0" min="0"><br />
+        
+          <label for="deca">Karte deca</label><br />
+          <input type="number" id="myText" placeholder="0" min="0"><br />
+
+
+          <label for="odrasli">Ulaz</label><br />
+          <select id="ulaz" name="ulaz" class="sirinaInput">
+            <option value="unutra">Ulaz</option>
+            <option value="jug">Jug</option>
+            <option value="sever">Sever</option>
+            <option value="zapad">Zapad</option>
+            <option value="istok">Istok</option>
+            <option value="vip">VIP</option>
+          </select>
+          <br />
+          <label for="date">Datum:</label><br />
+          <input type="date" id="date1" name="danasnjiDatum"><pre></pre>
+
+          <button type="button" class="btn btn-success" onclick="buyCard()">Kupi</button>
+          
+      </form>
+      <!-- Ostatak karata -->
+      <h3 id="ostalo" class=""></h3>
+      <h3 id="spanResult1" class="pb-5"></h3>
+    </div>
+
+        <!-- FOOTER -->
+      <footer class="footer">
+        <div>
+          Autor: Cvetkovic Marko, SII Nis, 2021240420
+        </div>
+        <div class="pb-3">
+          &copy; Sva prava zadrzava FC Barcelona Balkan Fans
+        </div>
+      </footer>
+    
+      <script>
+        var dostupno = 30000;
+        var prodato = 0;
+        function buyCard() {
+          var izaberiDatum = document.getElementById("date1").value;
+          var kupiKarteDeca = document.getElementById("myText").value;
+          var kupiKarteOdrasli = document.getElementById("myTextO").value;
+          var moraUlaz = document.getElementById("ulaz").value;
+          // Danasnji datum
+          var utc = new Date().toJSON().slice(0,10).replace(/-/g,'-');
+          // strint
+          var e = kupiKarteDeca*1;
+          var r = kupiKarteOdrasli*1;
+          var num = e+r;
+          var rasprodato = false;
+          if (prodato >= dostupno) {
+              alert("Karte su rasprodate.");
+              return;
+          }
+          if(kupiKarteOdrasli!=0 || kupiKarteDeca>0 ) {
+            if(kupiKarteOdrasli!=0 && moraUlaz!='unutra' && izaberiDatum!==""){
+              for (var i = 1; i <= num; i++) {
+              // Proverava da li su karte rasprodate
+              prodato++;
+              if (prodato >= dostupno) {
+                if (i < num) {
+                  alert("Dostupno je jos " + i + " karata!");
+                  rasprodato = true;
+                  break;
+                }
+              }
+            }
+            }
+          }
+          if (!rasprodato) {
+            if(kupiKarteOdrasli == 0 && kupiKarteDeca == 0){
+              alert("Morate kupiti karte!");
+            } else if(moraUlaz === "unutra" && izaberiDatum == "") {
+              alert("Morate izabrati ulaz!");
+            } else if(izaberiDatum < utc){
+              alert("Morate izabrati datum ili je izabrani datum vec prosao!");
+            } else if(kupiKarteOdrasli == 0 || kupiKarteDeca < 0){
+              alert("Morate kupiti i kartu za odrasle!");
+            } else {
+              if(document.getElementById("ulaz").value == 'vip'){
+                var x = document.getElementById("myTextO").value * 700;
+                var y = document.getElementById("myText").value * 300;
+              } else if(document.getElementById("ulaz").value == 'sever' || document.getElementById("ulaz").value == 'jug'){
+                var x = document.getElementById("myTextO").value * 500;
+                var y = document.getElementById("myText").value * 100;
+              } else if(document.getElementById("ulaz").value == 'istok' || document.getElementById("ulaz").value == 'zapad'){
+                var x = document.getElementById("myTextO").value * 600;
+                var y = document.getElementById("myText").value * 200;
+              }
+              document.getElementById("ostalo").innerHTML = "Hvala na kupovini. Ostalo nam je jos " + (dostupno - prodato) + " karata!";
+              var z = x+y;
+              document.getElementById("spanResult1").innerHTML = "Vas racun iznosi: " + z + " dinara. Karte vaze za " + izaberiDatum;
+            }
+          }
+        }
+      </script>
+</body>
+</html>
